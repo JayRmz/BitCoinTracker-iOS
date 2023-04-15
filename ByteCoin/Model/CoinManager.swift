@@ -16,15 +16,18 @@ struct CoinManager {
     
     var delegate: CoinManagerDelegate?
     
-    let baseURL = "https://rest.coinapi.io/v1/exchangerate/BTC"
-    let apiKey = "045A2A49-33A4-450F-B366-A3E6061508EE"
-
     let currencyArray = ["AUD", "BRL","CAD","CNY","EUR","GBP","HKD","IDR","ILS","INR","JPY","MXN","NOK","NZD","PLN","RON","RUB","SEK","SGD","USD","ZAR"]
+    
+    
+    func infoForKey(_ key: String) -> String? {
+        return (Bundle.main.infoDictionary?[key] as? String)?
+            .replacingOccurrences(of: "\\", with: "")
+    }
     
     func getCoinPrice(for currency: String) {
         
-        let urlString = "\(baseURL)/\(currency)?apikey=\(apiKey)"
-
+        let urlString = "\(infoForKey("CoinURL")!)\(currency)?apikey=\(infoForKey("CoinKEY")!)"
+        
         if let url = URL(string: urlString) {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error) in
@@ -49,7 +52,6 @@ struct CoinManager {
         do {
             let decodedData = try decoder.decode(CoinData.self, from: data)
             let lastPrice = decodedData.rate
-            print(lastPrice)
             return lastPrice
             
         } catch {

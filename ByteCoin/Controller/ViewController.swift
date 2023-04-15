@@ -53,7 +53,6 @@ extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
 
 extension ViewController: CoinManagerDelegate {
     func didUpdatePrice(price: String, currency: String) {
-        print("Price : \(price) Currency: \(currency)")
         DispatchQueue.main.async {
             self.bitcoinLabel.text = price
             self.currencyLabel.text = currency
