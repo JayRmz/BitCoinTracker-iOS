@@ -1,0 +1,13 @@
+//
+//  Staging.xcconfig
+//  ByteCoin
+//
+//  Created by Juan Manuel on 15/04/23.
+//  Copyright © 2023 The App Brewery. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+COIN_API_URL = https:\/\/rest.coinapi.io/v1/exchangerate/BTC/
+COIN_API_KEY = 045A2A49-33A4-450F-B366-A3E6061508EE
